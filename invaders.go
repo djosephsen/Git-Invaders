@@ -90,7 +90,7 @@ daysPerWeek := 7
 daysTot := len(invaders)*len(invaders[0])
 daysSinceStart := (todayTime.Sub(startTime)/(time.Hour*24))
 
-if (int(daysSinceStart) <= daysTot){
+if (int(daysSinceStart) < daysTot){
 	weekOffset = (int(daysSinceStart) / daysPerWeek)
 	dayOffset = (int(daysSinceStart) % daysPerWeek)
 }else{
