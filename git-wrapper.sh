@@ -52,4 +52,6 @@ then
 		echo invaders gitwrapper execing:  "${FT} -f \"-${OFFSET}d\" ${RG} ${@}"
 		${FT} -f -${OFFSET}d ${RG} ${@}
 	fi
+else
+	${RG} ${@}
 fi
