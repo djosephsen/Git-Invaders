@@ -106,8 +106,10 @@ testInvader(invaders, weekOffset, dayOffset )
 
 if invaders[weekOffset][dayOffset] { 
 	fmt.Println("returning true")
+	os.Exit(0)
 }else{
 	fmt.Println("returning false")
+	os.Exit(1)
 }
 
 
