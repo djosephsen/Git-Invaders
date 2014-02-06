@@ -44,3 +44,27 @@ my commits on certain days of the week, and if I don't have the commit traffic
 to pull this off, then there will be holes in the graph. I'll live with it. I'm
 just a developer evangalist, so I don't expect a day of delay here and there to
 kill anyone. If it gets in the way I'll stop doing it. 
+
+## invaders.go
+
+The only part of this written so far.  It takes two arguments, a start day and
+'today' in epoc seconds. You may omit the epoc value for today, but the start
+day is required.  Simply put, tell it when you started, and it'll exit 0 if you
+should push today, or 1 if you shouldn't. 
+
+Install it like this: 
+
+	go get github.com/djoephsen/Git-Invaders 
+
+Test is as if you started 1 month ago like this on
+linux: 
+
+	invaders $(date -d '1 month ago' +%s)
+
+or like this on Darwin:
+
+	invaders $(date -v-1M +%s)
+
+use it in a shell script like this: 
+
+	if invaders ${START}; then echo YES!; else echo NO!; fi

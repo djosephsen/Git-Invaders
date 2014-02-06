@@ -8,6 +8,7 @@ import (
 )
 
 //globals
+
 var invaders = [][]bool{ 
 	{false,false,false,true,true,true,false,}, 
 	{false,false,true,true,false,false,false,}, 
@@ -41,7 +42,7 @@ var invaders = [][]bool{
 	{false,false,true,true,false,false,true,},
 	{false,false,true,true,true,false,false,}, }
 
-func testInvader(invader [][]bool, wo int, do int){
+func testInvader(wo int, do int){
 //print the invader patterns to the console
 
 	for d:=0; d<=6; d++ {
@@ -85,7 +86,6 @@ if todayTime.Before(startTime){
 	os.Exit(42)
 }
 
-// compute some interesting lengths
 daysPerWeek := 7
 daysTot := len(invaders)*len(invaders[0])
 daysSinceStart := (todayTime.Sub(startTime)/(time.Hour*24))
@@ -102,7 +102,7 @@ if (int(daysSinceStart) <= daysTot){
 fmt.Printf("start: %d, today %d, daysSinceStart: %d\n",start, today, daysSinceStart)
 fmt.Printf("daystot: %d\n", daysTot)
 
-testInvader(invaders, weekOffset, dayOffset )
+testInvader(weekOffset, dayOffset )
 
 if invaders[weekOffset][dayOffset] { 
 	fmt.Println("returning true")
@@ -111,6 +111,4 @@ if invaders[weekOffset][dayOffset] {
 	fmt.Println("returning false")
 	os.Exit(1)
 }
-
-
 }
