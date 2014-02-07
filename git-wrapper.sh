@@ -3,8 +3,9 @@
 PATTERN_REPEAT=216 #a magic number, where the invader pattern first repeats. 
 START_DAY='1391983086'
 RG=/usr/bin/git
-FT=/usr/local/bin/faketime
 IV=${HOME}/reps/go/bin/invaders
+DFTL=/usr/local/Cellar/libfaketime/0.9.5/lib/faketime/libfaketime.1.dylib
+LFTL=${HOME}/reps/libfaketime/src/libfaketime.so.1
 ARCH=$(uname)
 
 function debug {
@@ -32,7 +33,6 @@ function computeEpoc {
 }
 
 [ -e "${RG}" ] || error "Real git not found at $RG"
-[ -e "${FT}" ] || error "Faketime not found at $FT"
 [ -e "${IV}" ] || error "Invaders not found at $IV"
 
 if grep -q 'commit' <<< $@
@@ -50,11 +50,18 @@ then
 		debug "done: I is $i"
 		OFFSET=$((${PATTERN_REPEAT}+${DSS}-${i}))
 
-		echo invaders gitwrapper execing:  "${FT} -f \"-${OFFSET}d\" ${RG} ${@}"
-		${FT} -m -f -${OFFSET}d ${RG} "${@}"
-			
+		if [ "${ARCH}" == Darwin ]
+		then
+			DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES=${DFTL} FAKETIME="-${OFFSET}d" ${RG} "${@}"
+			debug " Invaders Gitwrapper Execing: DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES=${DFTL} FAKETIME=\"-${OFFSET}d\" ${RG} ${@}"
+		elif [ "${ARCH}" == Darwin ]
+		then
+			LD_PRELOAD=${LFTL} FAKETIME="-${OFFSET}d" ${RG} "${@}"
+			debug "Invaders Gitwrapper Execing: LD_PRELOAD=${LFTL} FAKETIME=\"-${OFFSET}d\" ${RG} ${@}"
+		else
+			error "ARCH not detected (neither Linux nor Darwin)"
+		fi
 	fi
 else
 	${RG} "${@}"
 fi
-
