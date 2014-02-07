@@ -43,7 +43,7 @@ then
 		i=$((${PATTERN_REPEAT} + ${DSS} - 1 ))
 		c=0 # keep an extra variable for the day offset; things are confusing enough as is
 		debug "start: $DSS days since start, I is $i (${PATTERN_REPEAT} + ${DSS} )"
-		while ! ${IV} ${START_DAY} $(computeEpoc ${i}) 
+		while ! ${IV} ${START_DAY} $(computeEpoc ${i}) > /dev/null
 		do
 			debug "loop: I is $i"
 			i=$((${i}-1))
@@ -64,5 +64,6 @@ then
 		fi
 	fi
 else
+	debug "Invaders GitWrapper: no commit detected. Passing through"
 	${RG} "${@}"
 fi
