@@ -26,8 +26,8 @@ pictures by adding spaces to a text file.
 
 ## How?
 
-tldr; by automatically delaying some of my pushes by redirecting them to a
-private github server instead of github.com.
+tldr; by spoofing the timestamp of my commits into the past on certain days of
+the week.
 
 There are three pieces to this puzzle. The first is a Go program that models
 the 'invaders' data structure, and given epoc seconds for the day you start as
