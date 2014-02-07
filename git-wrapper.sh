@@ -54,7 +54,7 @@ then
 		then
 			DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES=${DFTL} FAKETIME="-${OFFSET}d" ${RG} "${@}"
 			debug " Invaders Gitwrapper Execing: DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES=${DFTL} FAKETIME=\"-${OFFSET}d\" ${RG} ${@}"
-		elif [ "${ARCH}" == Darwin ]
+		elif [ "${ARCH}" == Linux ]
 		then
 			LD_PRELOAD=${LFTL} FAKETIME="-${OFFSET}d" ${RG} "${@}"
 			debug "Invaders Gitwrapper Execing: LD_PRELOAD=${LFTL} FAKETIME=\"-${OFFSET}d\" ${RG} ${@}"
