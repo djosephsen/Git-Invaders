@@ -62,6 +62,9 @@ then
 		else
 			error "ARCH not detected (neither Linux nor Darwin)"
 		fi
+	else
+	debug "Invaders GitWrapper: Today not a blank day. Passing through"
+	${RG} "${@}"
 	fi
 else
 	debug "Invaders GitWrapper: no commit detected. Passing through"
