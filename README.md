@@ -29,7 +29,10 @@ not some cron job drawing pretty pictures by committing space changes.
 tldr; I'm spoofing the timestamp of some of my commits so they look like they
 actually happened in the past. I'm only doing this on certain days when I need
 there to be a "blank spot" on my contribution graph. (The longer story of how
-this works is actually pretty cool, so you should read more).
+this works is actually pretty cool, so you should read more (I even blogged the
+[whole
+story](http://www.skeptech.org/blog/2014/02/11/the-part-where-I-hack-my-github-graph/)
+if you have a few minutes)).
 
 There are three pieces to this puzzle. The first is a Go program that models
 the 'invaders' data structure, and given epoch seconds for the day you start as
@@ -50,10 +53,12 @@ which is vastly superior, so I switched to using it instead.
 
 Using the three of these together, the process is transparent to me on a day to
 day basis.  I commit and push as I normally do, and my git client draws space
-invaders in my graph for me. You should be able to clone this repo, and change
-the data structure inside the Go program to draw whatever sort of endlessly
-repeating pattern you'd like in your github graph.  If you do, drop a comment
-in here, I'd love to see it!
+invaders in my graph for me (As of Feb/March 2014, I'm just barely getting
+started, so it doesn't look like much yet).  If you're interested in drawing
+something in your contributions graph, you should be able to clone this repo,
+and change the data structure inside the Go program to draw whatever sort of
+endlessly repeating pattern you'd like in your github graph.  If you do, drop a
+comment in here, I'd love to see it!
 
 ## invaders.go
 
