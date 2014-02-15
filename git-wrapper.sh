@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATTERN_REPEAT=216 #a magic number, where the invader pattern first repeats. 
+PATTERN_REPEAT=218 #a magic number, where the invader pattern first repeats. 
 START_DAY='1391925600'
 RG=/usr/bin/git
 IV=${HOME}/reps/go/bin/invaders
@@ -20,13 +20,13 @@ function error {
 }
 
 function computeEpoc {
-#return $1 days from today in epoc seconds
+	D=$((${1}-${DSS}))
 	if [ "${ARCH}" == "Linux" ]
 	then
-		echo $(date -d "today + ${1} days" +%s)
+		echo $(date -d "today + ${D} days" +%s)
 	elif [ "${ARCH}" == "Darwin" ]
 	then
-		echo $(date -v "+${i}d" +%s)
+		echo $(date -v "+${D}d" +%s)
 	else
 		error "ERROR: Unknown architecture! (not linux or darwin)"
 	fi
@@ -43,7 +43,7 @@ then
 		i=$((${PATTERN_REPEAT} + ${DSS} - 1 ))
 		c=0 # keep an extra variable for the day offset; things are confusing enough as is
 		debug "start: $DSS days since start, I is $i (${PATTERN_REPEAT} + ${DSS} )"
-		while ! ${IV} ${START_DAY} $(computeEpoc ${i}) > /dev/null
+		while ! ${IV} ${START_DAY} $(computeEpoc ${i}) #> /dev/null
 		do
 			debug "loop: I is $i"
 			i=$((${i}-1))
