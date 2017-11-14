@@ -47,10 +47,12 @@ then
 			debug "loop: I is $i"
 			i=$((${i}-1))
 		done
-			debug "done: I is $i"
+		debug "done: I is $i"
 		OFFSET=$((${PATTERN_REPEAT}+${DSS}-${i}))
+
 		echo invaders gitwrapper execing:  "${FT} -f \"-${OFFSET}d\" ${RG} ${@}"
-		${FT} -f -${OFFSET}d ${RG} "${@}"
+		${FT} -m -f -${OFFSET}d ${RG} "${@}"
+			
 	fi
 else
 	${RG} "${@}"
