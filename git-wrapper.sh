@@ -9,7 +9,7 @@ ARCH=$(uname)
 
 function debug {
 #echo $@ to stderr if DEBUG is set
-	[ "${DEBUG}" ] && echo $@ >&2
+	[ "${DEBUG}" ] && echo "$@">&2
 }
 
 function error {
@@ -53,6 +53,6 @@ then
 		${FT} -f -${OFFSET}d ${RG} "${@}"
 	fi
 else
-	${RG} ${@}
+	${RG} "${@}"
 fi
 
